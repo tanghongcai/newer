@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="Spring_Project_Tang"
+  id="myeclipse.1591702248766"
+  context-root="/Spring_Project_Tang"
+  j2ee-spec="5.0"
+  archive="Spring_Project_Tang.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

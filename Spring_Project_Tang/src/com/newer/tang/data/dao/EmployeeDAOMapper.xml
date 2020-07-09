@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.tang.data.dao.IEmployeeDAO">
+	<resultMap type="com.newer.tang.data.entity.Employee" id="empMapper">
+		<id property="employeeId" column="employee_id"/>
+		<result property="employeeName" column="employee_name"/>
+		<result property="password" column="password"/>
+		<result property="realName" column="real_name"/>
+		<result property="sex" column="sex"/>
+		<result property="birthday" column="birthday"/>
+		<result property="duty" column="duty"/>
+		<result property="enrollDate" column="enrolldate"/>
+		<result property="edcucation" column="education"/>
+		<result property="major" column="major"/>
+		<result property="experience" column="experience"/>
+					
+		<association property="role" column="role_id">
+		
+		</association>		
+	</resultMap>
+	
+	<select id="queryAll" resultMap="empMapper" parameterType="java.util.List">
+	    select * from t_employee
+	</select>
+	
+	<select id="queryId" parameterType="int">
+		select * from t_employee where employee_id=#{employeeId}
+	</select>
+	
+	<insert id="insertAdmin">
+	
+	</insert>
+	<update id="updateAdmin">
+	
+	</update>
+	<delete id="deleteAdmin">
+	
+	</delete>
+</mapper>

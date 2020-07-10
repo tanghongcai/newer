@@ -14,27 +14,34 @@
 		<result property="edcucation" column="education"/>
 		<result property="major" column="major"/>
 		<result property="experience" column="experience"/>
-					
-		<association property="role" column="role_id">
-		
+		<result property="role" column="role_id"/>
+		<result property="parent" column="parent_id"/>
+			
+		<association property="role" column="role_id">	
 		</association>		
 	</resultMap>
 	
-	<select id="queryAll" resultMap="empMapper" parameterType="java.util.List">
+	<select id="queryAll" resultMap="empMapper">
 	    select * from t_employee
 	</select>
 	
-	<select id="queryId" parameterType="int">
+	<select id="queryId" resultMap="empMapper" parameterType="int">
 		select * from t_employee where employee_id=#{employeeId}
 	</select>
 	
-	<insert id="insertAdmin">
-	
+	<insert id="insertAdmin" parameterType="Employee">
+	insert into t_employee(employee_name,password,real_name,sex,birthday,duty
+	,enrolldate,education,major,experience,role_id,parent_id) 
+	values(#{employeeName},#{password},#{realName},#{sex},#{birthday}
+	,#{duty},#{enrollDate},#{edcucation},#{major},#{experience},#{role},#{parent})		
 	</insert>
 	<update id="updateAdmin">
-	
+	update t_employee set employee_name=#{employeeName},password=#{password},
+	real_name=#{realName},sex=#{sex},birthday=#{birthday},duty=#{duty},
+	enrolldate=#{enrollDate},education=#{edcucation},major=#{major},experience=#{experience},
+	role_id=#{role},parent_id=#{parent} where employee_id=#{employeeId}
 	</update>
 	<delete id="deleteAdmin">
-	
+		delete from t_employee where employee_id=#{employeeId}
 	</delete>
 </mapper>

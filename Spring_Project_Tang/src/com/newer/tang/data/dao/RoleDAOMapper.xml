@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newer.tang.data.dao.IRoleDAO">
+	<resultMap type="com.newer.tang.data.entity.Role" id="roleMapper">
+		<id property="roleId" column="role_Id"/>
+		<result property="roleName" column="role_Name"/>
+		<result property="roleDesc" column="role_Desc"/>		
+			
+	</resultMap>
+	
+	<select id="queryAll" resultMap="roleMapper" parameterType="java.util.List">
+	    select * from t_role
+	</select>
+	
+	<select id="queryById" parameterType="Integer">
+		select * from t_role where role_Id=#{roleId}
+	</select>
+	
+</mapper>

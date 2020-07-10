@@ -2,31 +2,59 @@ package com.newer.tang.data.dao.impl;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import com.newer.tang.data.dao.IEmployeeDAO;
 import com.newer.tang.data.dao.IRoleDAO;
+import com.newer.tang.data.entity.Employee;
 import com.newer.tang.data.entity.Role;
-import com.newer.tang.data.util.DBUtil;
+
 
 @Component("roleDAO")
-public class RoleDAOimpl implements IRoleDAO {
-	JdbcTemplate jdbcTemplate=new JdbcTemplate(DBUtil.getDataSource());
+public class RoleDAOimpl extends SqlSessionDaoSupport implements IRoleDAO {
+	@Resource(name="sqlSessionFactory")
+	SqlSessionFactory sqlSessionFactory;
 	
-	/* (non-Javadoc)
-	 * @see com.newer.tang.data.dao.impl.IRoleDAO#queryById(java.lang.Integer)
-	 */
-	@Override
-	public Role queryById(Integer roleId){
-		return (Role) jdbcTemplate.queryForObject("select *from T_ROLE where ROLE_ID=?", new Object[]{roleId}, new BeanPropertyRowMapper(Role.class));
+	@PostConstruct
+	private void initialize() {
+		System.out.println("≥ı ºªØ");
+		setSqlSessionFactory(sqlSessionFactory);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.newer.tang.data.dao.impl.IRoleDAO#queryAll()
-	 */
+	@Override
+	public Role queryById(Integer roleId){
+		Role all=null;
+		try {
+			SqlSession session=super.getSqlSession();
+			IRoleDAO dao=session.getMapper(IRoleDAO.class);
+			all=dao.queryById(roleId);
+			System.out.println(all);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return all;
+	}
+	
+	
 	@Override
 	public List<Role> queryAll(){
-		return jdbcTemplate.query("select *from T_ROLE", new BeanPropertyRowMapper(Role.class));
+		List<Role> all=null;
+		try {
+			SqlSession session=super.getSqlSession();
+			IRoleDAO dao=session.getMapper(IRoleDAO.class);
+			all=dao.queryAll();
+			System.out.println(all);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return all;
 	}
 }

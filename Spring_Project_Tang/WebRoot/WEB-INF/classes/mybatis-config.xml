@@ -13,5 +13,6 @@
 	<mappers>
 	<!--映射DAO类配置文件-->		
 		<mapper resource= "com/newer/tang/data/dao/EmployeeDAOMapper.xml"/>
+		<mapper resource= "com/newer/tang/data/dao/RoleDAOMapper.xml"/>
 	</mappers>
 </configuration>

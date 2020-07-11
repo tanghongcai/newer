@@ -1,6 +1,7 @@
 package com.newer.tang.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,14 +17,14 @@ public interface IEmployeeService {
 		public abstract  List<Employee> allEmp(int pageNo,int pageSize);
 		public abstract Employee empById(int id);
 		//查询所有管理员
-		public abstract List queryAll(int pageNo,int pageSize);
+		public abstract Employee queryAll(Map<Integer, Object> param);
 		public abstract int queryCount();
 		public abstract  List<Employee> queryAll();
 		//新增用户
 		public abstract int insertUser(Employee emp);
 		
 		//删除用户
-		public abstract int deleteUser(Employee emp);
+		public abstract int deleteUser(int id);
 		
 		//分配用户修改
 		public abstract int updateUser(Employee emp);

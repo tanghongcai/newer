@@ -2,6 +2,7 @@ package com.newer.tang.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -46,9 +47,9 @@ public class EmployeeServiceimpl implements IEmployeeService {
 	
 	//È«²¿²éÑ¯
 		@Override
-		public List queryAll(int pageNo,int pageSize) {
+		public Employee queryAll(Map<Integer, Object> param) {
 			
-			return dao.queryAll(pageNo,pageSize);
+			return dao.queryAll(param);
 		}
 		@Override
 		public int queryCount(){
@@ -63,9 +64,9 @@ public class EmployeeServiceimpl implements IEmployeeService {
 		}
 
 		@Override
-		public int deleteUser(Employee emp) {
+		public int deleteUser(int id) {
 			
-			return dao.deleteAdmin(emp);
+			return dao.deleteAdmin(id);
 		}
 
 		@Override

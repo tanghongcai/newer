@@ -42,6 +42,10 @@ public class SelectControl {
 	//员工管理查询
 	@RequestMapping("select.do")
 	public String selectAll(Model model,HttpServletRequest request){
+//		Map<Integer, Object> param=null;
+//		param.put(param.get(key), 1);
+//		param.put("pageSize", 3);
+
 		int pageNo = 1;
 		int pageSize = 3;
 		if (request.getParameter("pageNo") != null) {
@@ -50,7 +54,7 @@ public class SelectControl {
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		List list=service.queryAll(pageNo,pageSize);
+		List list=service.queryAll();
 		System.out.println(list);
 		PageBean<Employee> pb=new PageBean<Employee>();
 		int count=service.queryCount();
@@ -99,7 +103,7 @@ public class SelectControl {
 		if (request.getParameter("pageSize") != null) {
 			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		}
-		List list=service.queryAll(pageNo,pageSize);
+		List list=service.queryAll();
 		PageBean<Employee> pb=new PageBean<Employee>();
 		int count=service.queryCount();
 		pb.setCount(count);
@@ -117,7 +121,7 @@ public class SelectControl {
 	public String deleteUser(@ModelAttribute("deleteUser") Employee emp,@RequestParam("radiobutton") Integer id, Model model){			
 		emp.setEmployeeId(id);
 		System.out.println(id);
-		int count=service.deleteUser(emp);
+		int count=service.deleteUser(id);
 		System.out.println("执行条数"+count);
 		return "select.do";
 	}

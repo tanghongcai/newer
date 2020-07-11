@@ -3,6 +3,7 @@ package com.newer.tang.data.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -76,13 +77,13 @@ public class EmployeeDAOimpl extends SqlSessionDaoSupport implements IEmployeeDA
 
 	//分页查询
 	@Override
-	public List<Employee> queryAll(int pageNo, int pageSize) {
+	public Employee queryAll(Map<Integer, Object> param) {
 		System.out.println("分页查询：");
-		List<Employee> all=null;
+		Employee all=null;
 		try {	
 			SqlSession session=super.getSqlSession();
 			IEmployeeDAO dao=session.getMapper(IEmployeeDAO.class);
-			all=dao.queryAll(pageNo, pageSize);
+			all=dao.queryAll(param);
 			System.out.println(all);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -123,13 +124,13 @@ public class EmployeeDAOimpl extends SqlSessionDaoSupport implements IEmployeeDA
 
 		//删除员工
 		@Override
-		public int deleteAdmin(Employee emp) {
+		public int deleteAdmin(int id) {
 			System.out.println("删除员工：");
 			int count=0;
 			try {	
 				SqlSession session=super.getSqlSession();
 				IEmployeeDAO dao=session.getMapper(IEmployeeDAO.class);
-				count=dao.deleteAdmin(emp);
+				count=dao.deleteAdmin(id);
 				System.out.println(count);
 			} catch (Exception e) {
 				e.printStackTrace();

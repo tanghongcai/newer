@@ -17,8 +17,8 @@
 		<result property="role" column="role_id"/>
 		<result property="parent" column="parent_id"/>
 			
-		<association property="role" column="role_id">	
-		</association>		
+		<!-- <association property="role" column="role_id">	
+		</association> -->		
 	</resultMap>
 	
 	<select id="queryAll" resultMap="empMapper">
